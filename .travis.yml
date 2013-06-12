@@ -1,0 +1,2 @@
+language: go
+script: cd hll && go test

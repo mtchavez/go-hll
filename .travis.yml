@@ -1,2 +1,5 @@
-language: go
-script: make test
+go:
+  - 1.0
+  - 1.1
+  - tip
+script: cd hll && go test ./...

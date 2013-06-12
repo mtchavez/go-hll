@@ -1,2 +1,2 @@
 language: go
-script: cd hll && go test
+script: make test

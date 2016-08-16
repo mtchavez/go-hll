@@ -31,11 +31,11 @@ func TestGetAlpha(t *testing.T) {
 func TestInitialize(t *testing.T) {
 	hll := Initialize(0.065)
 	if hll.mapSize != 256.0 {
-		t.Errorf("Map size should be 256 but got %d", hll.mapSize)
+		t.Errorf("Map size should be 256 but got %f", hll.mapSize)
 	}
 
 	if len(hll.Table) != int(hll.mapSize) {
-		t.Errorf("Table size should be %d but got %d", hll.mapSize, len(hll.Table))
+		t.Errorf("Table size should be %f but got %d", hll.mapSize, len(hll.Table))
 	}
 
 	if hll.kComp != 24 {

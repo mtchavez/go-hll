@@ -4,14 +4,18 @@ import (
 	"math"
 )
 
+// Hll is the hyper-log-log struct containing the lookup table
+// and internal configuration
 type Hll struct {
 	Table   map[uint32]uint32
 	mapSize float64
-	kComp   uint32
+	comp    uint32
 	alpha   float64
 	stdErr  float64
 }
 
+// Initialize takes in an allowed error for the hyper-log-log algorithm
+// and will return an Hll
 func Initialize(err float64) (hll *Hll) {
 	hll = &Hll{}
 	hll.setupState(err)
@@ -23,14 +27,14 @@ func (hll *Hll) setupState(err float64) {
 	hll.stdErr = err
 	msize := float64(1.04) / hll.stdErr
 	k := math.Ceil(math.Log2(msize * msize))
-	hll.kComp = uint32(32 - k)
+	hll.comp = uint32(32 - k)
 	hll.mapSize = math.Pow(2, k)
 	hll.alpha = getAlpha(hll.mapSize)
 }
 
 func (hll *Hll) setupTable() {
 	table := make(map[uint32]uint32)
-	var i uint32 = 0
+	var i uint32
 	for ; i < uint32(hll.mapSize); i++ {
 		table[i] = 0
 	}
@@ -50,8 +54,8 @@ func getAlpha(msize float64) (alpha float64) {
 	return
 }
 
-func HashCode(key string) (hashed uint32) {
-	var i uint32 = 0
+func hashCode(key string) (hashed uint32) {
+	var i uint32
 	runes := []rune(key)
 
 	for ; i < uint32(len(key)); i++ {
@@ -75,18 +79,22 @@ func getRank(hashed uint32, max uint32) (rank uint32) {
 	return rank
 }
 
+// Add takes a term to add to the hyper-log-log table
+// and will be hashed and incremented
 func (hll *Hll) Add(term string) {
-	hashed := HashCode(term)
-	key := uint32(hashed >> hll.kComp)
+	hashed := hashCode(term)
+	key := uint32(hashed >> hll.comp)
 
 	current := float64(hll.Table[key])
-	rank := float64(getRank(hashed, hll.kComp))
+	rank := float64(getRank(hashed, hll.comp))
 	hll.Table[key] = uint32(math.Max(current, rank))
 }
 
+// Count will calculate the size of the terms in the hyper-log-log table
+// and return the total, consider that there may be false positives.
 func (hll *Hll) Count() uint32 {
-	var c float64 = 0
-	var i uint32 = 0
+	var c float64
+	var i uint32
 
 	for ; i < uint32(hll.mapSize); i++ {
 		c += 1.0 / math.Pow(2, float64(hll.Table[i]))
@@ -96,7 +104,7 @@ func (hll *Hll) Count() uint32 {
 
 	// Make corrections
 	if e <= (5/2)*hll.mapSize {
-		var v float64 = 0
+		var v float64
 		for i = 0; i < uint32(hll.mapSize); i++ {
 			if hll.Table[i] == 0 {
 				v++

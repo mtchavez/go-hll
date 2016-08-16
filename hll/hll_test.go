@@ -31,15 +31,15 @@ func TestGetAlpha(t *testing.T) {
 func TestInitialize(t *testing.T) {
 	hll := Initialize(0.065)
 	if hll.mapSize != 256.0 {
-		t.Errorf("Map size should be 256 but got %d", hll.mapSize)
+		t.Errorf("Map size should be 256 but got %f", hll.mapSize)
 	}
 
 	if len(hll.Table) != int(hll.mapSize) {
-		t.Errorf("Table size should be %d but got %d", hll.mapSize, len(hll.Table))
+		t.Errorf("Table size should be %f but got %d", hll.mapSize, len(hll.Table))
 	}
 
-	if hll.kComp != 24 {
-		t.Errorf("K compliment should be 24 but got %d", hll.kComp)
+	if hll.comp != 24 {
+		t.Errorf("K compliment should be 24 but got %d", hll.comp)
 	}
 
 	if fmt.Sprintf("%g", hll.alpha) != fmt.Sprintf("%g", 0.7182725932495458) {
@@ -47,8 +47,8 @@ func TestInitialize(t *testing.T) {
 	}
 }
 
-func TestHashCode(t *testing.T) {
-	result := HashCode("apple")
+func TesthashCode(t *testing.T) {
+	result := hashCode("apple")
 	var expected uint32 = 2297466611
 	if result != expected {
 		t.Errorf("Hash code for 'apple' should return %d but got %d", expected, result)
@@ -57,15 +57,15 @@ func TestHashCode(t *testing.T) {
 
 func TestGetRank(t *testing.T) {
 	hll := Initialize(0.065)
-	hashed := HashCode("kiwi kiwi kiwi")
-	rank := getRank(hashed, hll.kComp)
+	hashed := hashCode("kiwi kiwi kiwi")
+	rank := getRank(hashed, hll.comp)
 	var expected uint32 = 2
 	if rank != expected {
 		t.Errorf("Rank of 'apple' should be %d but got %d", expected, rank)
 	}
 
-	hashed = HashCode("apple")
-	rank = getRank(hashed, hll.kComp)
+	hashed = hashCode("apple")
+	rank = getRank(hashed, hll.comp)
 	expected = 1
 	if rank != expected {
 		t.Errorf("Rank of 'apple' should be %d but got %d", expected, rank)
@@ -76,9 +76,9 @@ func TestAdd(t *testing.T) {
 	hll := Initialize(0.065)
 
 	hll.Add("apple")
-	hashed := HashCode("apple")
-	key := uint32(hashed >> hll.kComp)
-	value := uint32(math.Max(float64(hll.Table[key]), float64(getRank(hashed, hll.kComp))))
+	hashed := hashCode("apple")
+	key := uint32(hashed >> hll.comp)
+	value := uint32(math.Max(float64(hll.Table[key]), float64(getRank(hashed, hll.comp))))
 	var expected uint32 = 1
 	if value != expected {
 		t.Errorf("Value after add should be %d but got %d", expected, value)
@@ -86,25 +86,25 @@ func TestAdd(t *testing.T) {
 
 	hll.Add("apple")
 	hll.Add("apple")
-	value = uint32(math.Max(float64(hll.Table[key]), float64(getRank(hashed, hll.kComp))))
+	value = uint32(math.Max(float64(hll.Table[key]), float64(getRank(hashed, hll.comp))))
 	expected = 1
 	if value != expected {
 		t.Errorf("Value after add should be %d but got %d", expected, value)
 	}
 
 	hll.Add("kiwi kiwi kiwi")
-	hashed = HashCode("kiwi kiwi kiwi")
-	key = uint32(hashed >> hll.kComp)
-	value = uint32(math.Max(float64(hll.Table[key]), float64(getRank(hashed, hll.kComp))))
+	hashed = hashCode("kiwi kiwi kiwi")
+	key = uint32(hashed >> hll.comp)
+	value = uint32(math.Max(float64(hll.Table[key]), float64(getRank(hashed, hll.comp))))
 	expected = 2
 	if value != expected {
 		t.Errorf("Value after add should be %d but got %d", expected, value)
 	}
 
 	hll.Add("apple banana peach wiki pear")
-	hashed = HashCode("apple banana peach wiki pear apple")
-	key = uint32(hashed >> hll.kComp)
-	value = uint32(math.Max(float64(hll.Table[key]), float64(getRank(hashed, hll.kComp))))
+	hashed = hashCode("apple banana peach wiki pear apple")
+	key = uint32(hashed >> hll.comp)
+	value = uint32(math.Max(float64(hll.Table[key]), float64(getRank(hashed, hll.comp))))
 	expected = 4
 	if value != expected {
 		t.Errorf("Value after add should be %d but got %d", expected, value)

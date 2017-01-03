@@ -25,7 +25,7 @@ import (
 )
 
 func main() {
-  hll := Initialize(0.065)
+  hll := NewWithErr(0.065)
 }
 ```
 
@@ -40,7 +40,7 @@ import (
 )
 
 func main() {
-  hll := Initialize(0.065)
+  hll := NewWithErr(0.065)
   words := []string{"apple", "this is bananas", "kiwi kiwi kiwi", "Peach is a peach", "apple banana peach wiki pear"}
   for _, word := range words {
     hll.Add(word)
@@ -52,7 +52,7 @@ func main() {
 Get the count and calculate the error of your hyper log log
 
 ```go
-hll := Initialize(0.065)
+hll := NewWithErr(0.065)
   words := []string{"apple", "this is bananas", "kiwi kiwi kiwi", "Peach is a peach", "apple banana peach wiki pear"}
   for _, word := range words {
     hll.Add(word)

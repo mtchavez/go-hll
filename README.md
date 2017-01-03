@@ -14,8 +14,8 @@ go get https://github.com/mtchavez/go-hll/hll
 
 ## Usage
 
-### Initializing
-Initializing a hyper log log table
+### Create new
+New hyper log log table with a desired error
 
 ```go
 package main
@@ -26,6 +26,21 @@ import (
 
 func main() {
   hll := NewWithErr(0.065)
+}
+```
+
+### New with default error
+```go
+package main
+
+import (
+  "github.com/mtchavez/go-hll/hll"
+)
+
+func main() {
+  // Uses DefaultErr of 0.065
+  hll := New()
+  hll.Add("foo")
 }
 ```
 

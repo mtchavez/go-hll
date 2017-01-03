@@ -28,6 +28,25 @@ func TestGetAlpha(t *testing.T) {
 	}
 }
 
+func TestNew(t *testing.T) {
+	hll := New()
+	if hll.mapSize != 256.0 {
+		t.Errorf("Map size should be 256 but got %f", hll.mapSize)
+	}
+
+	if len(hll.Table) != int(hll.mapSize) {
+		t.Errorf("Table size should be %f but got %d", hll.mapSize, len(hll.Table))
+	}
+
+	if hll.comp != 24 {
+		t.Errorf("K compliment should be 24 but got %d", hll.comp)
+	}
+
+	if fmt.Sprintf("%g", hll.alpha) != fmt.Sprintf("%g", 0.7182725932495458) {
+		t.Errorf("Alpha should be 0.7182725932495458 but got %g", hll.alpha)
+	}
+}
+
 func TestNewWithErr(t *testing.T) {
 	hll := NewWithErr(0.065)
 	if hll.mapSize != 256.0 {

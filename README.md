@@ -10,7 +10,7 @@ Go implementation of Hyper Log Log
 ## Install
 
 ```go
-go get https://github.com/mtchavez/go-hll/hll
+go get github.com/mtchavez/go-hll/hll
 ```
 
 ## Usage

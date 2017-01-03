@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/mtchavez/go-hll.png)](https://travis-ci.org/mtchavez/go-hll)
 [![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/mtchavez/go-hll)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mtchavez/go-hll)](https://goreportcard.com/report/github.com/mtchavez/go-hll)
+[![Go Cover](http://gocover.io/_badge/github.com/mtchavez/go-hll/hll)](http://gocover.io/github.com/mtchavez/go-hll/hll)
 
 Go implementation of Hyper Log Log
 

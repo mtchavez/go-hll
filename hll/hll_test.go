@@ -66,7 +66,7 @@ func TestNewWithErr(t *testing.T) {
 	}
 }
 
-func TesthashCode(t *testing.T) {
+func Test_hashCode(t *testing.T) {
 	result := hashCode("apple")
 	var expected uint32 = 2297466611
 	if result != expected {

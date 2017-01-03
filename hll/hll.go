@@ -14,9 +14,9 @@ type Hll struct {
 	stdErr  float64
 }
 
-// Initialize takes in an allowed error for the hyper-log-log algorithm
+// NewWithErr takes in an allowed error for the hyper-log-log algorithm
 // and will return an Hll
-func Initialize(err float64) (hll *Hll) {
+func NewWithErr(err float64) (hll *Hll) {
 	hll = &Hll{}
 	hll.setupState(err)
 	hll.setupTable()

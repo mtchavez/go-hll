@@ -28,8 +28,8 @@ func TestGetAlpha(t *testing.T) {
 	}
 }
 
-func TestInitialize(t *testing.T) {
-	hll := Initialize(0.065)
+func TestNewWithErr(t *testing.T) {
+	hll := NewWithErr(0.065)
 	if hll.mapSize != 256.0 {
 		t.Errorf("Map size should be 256 but got %f", hll.mapSize)
 	}
@@ -56,7 +56,7 @@ func TesthashCode(t *testing.T) {
 }
 
 func TestGetRank(t *testing.T) {
-	hll := Initialize(0.065)
+	hll := NewWithErr(0.065)
 	hashed := hashCode("kiwi kiwi kiwi")
 	rank := getRank(hashed, hll.comp)
 	var expected uint32 = 2
@@ -73,7 +73,7 @@ func TestGetRank(t *testing.T) {
 }
 
 func TestAdd(t *testing.T) {
-	hll := Initialize(0.065)
+	hll := NewWithErr(0.065)
 
 	hll.Add("apple")
 	hashed := hashCode("apple")
@@ -112,7 +112,7 @@ func TestAdd(t *testing.T) {
 }
 
 func TestCount(t *testing.T) {
-	hll := Initialize(0.065)
+	hll := NewWithErr(0.065)
 	words := []string{"apple", "this is bananas", "kiwi kiwi kiwi", "Peach is a peach", "apple banana peach wiki pear"}
 	for _, word := range words {
 		hll.Add(word)

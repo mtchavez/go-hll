@@ -5,7 +5,7 @@ import (
 )
 
 func ExampleHll_Count() {
-	hll := Initialize(0.065)
+	hll := NewWithErr(0.065)
 	words := []string{"apple", "this is bananas", "kiwi kiwi kiwi", "Peach is a peach", "apple banana peach wiki pear"}
 	for _, word := range words {
 		hll.Add(word)

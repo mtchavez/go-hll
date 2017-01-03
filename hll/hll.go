@@ -4,6 +4,12 @@ import (
 	"math"
 )
 
+const (
+	// DefaultErr is the default error rate for a hyper-log-log created by
+	// using New()
+	DefaultErr = 0.065
+)
+
 // Hll is the hyper-log-log struct containing the lookup table
 // and internal configuration
 type Hll struct {
@@ -12,6 +18,14 @@ type Hll struct {
 	comp    uint32
 	alpha   float64
 	stdErr  float64
+}
+
+// New makes a new hyper-log-log with an error rate of DefaultErr
+func New() (hll *Hll) {
+	hll = &Hll{}
+	hll.setupState(DefaultErr)
+	hll.setupTable()
+	return
 }
 
 // NewWithErr takes in an allowed error for the hyper-log-log algorithm

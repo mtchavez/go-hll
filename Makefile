@@ -1,6 +1,14 @@
 ROOT := $(CURDIR)
+GOPKGS = \
+		golang.org/x/tools/cmd/cover \
+		github.com/golang/lint/golint \
+		github.com/tools/godep
 
 default: test
+
+deps:
+	@go get -u -v $(GOPKGS)
+	@if [ `which godep` ] && [ -f ./Godeps/Godeps.json ]; then godep restore; fi
 
 lint:
 	@echo "[Lint] running golint"
@@ -10,7 +18,7 @@ vet:
 	@echo "[Vet] running go vet"
 	@cd ${ROOT}/hll && go vet
 
-ci: vet lint test
+ci: deps vet lint test
 
 test:
 	@echo "[Test] running tests"

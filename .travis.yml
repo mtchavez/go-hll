@@ -1,5 +1,4 @@
 go:
-  - 1.0
-  - 1.1
+  - 1.7
   - tip
-script: cd hll && go test ./...
+script: make ci

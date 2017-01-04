@@ -1,4 +1,8 @@
+language: go
 go:
   - 1.7
   - tip
-script: make ci
+sudo: false
+script:
+  - export PATH=$PATH:$HOME/gopath/bin
+  - make ci

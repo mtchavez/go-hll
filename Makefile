@@ -22,6 +22,6 @@ ci: deps vet lint test
 
 test:
 	@echo "[Test] running tests"
-	@cd ${ROOT}/hll && go test -cover
+	@go test -v ./... -cover -coverprofile=c.out
 
 .PHONY: default golint test

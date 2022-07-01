@@ -72,7 +72,7 @@ func hashCode(key string) (hashed uint32) {
 	var i uint32
 	runes := []rune(key)
 
-	for ; i < uint32(len(key)); i++ {
+	for ; i < uint32(len(runes)); i++ {
 		hashed += uint32(runes[i])
 		hashed += (hashed << 10)
 		hashed ^= (hashed >> 6)

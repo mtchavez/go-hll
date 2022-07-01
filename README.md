@@ -16,7 +16,13 @@ go get github.com/mtchavez/go-hll/hll
 
 ## Usage
 
+- [New](#create-new)
+- [New With Default Error](#new-with-default-error)
+- [Adding](#adding)
+- [Count](#count)
+
 ### Create new
+
 New hyper log log table with a desired error
 
 ```go
@@ -32,6 +38,7 @@ func main() {
 ```
 
 ### New with default error
+
 ```go
 package main
 
@@ -47,6 +54,7 @@ func main() {
 ```
 
 ### Adding
+
 Add some words to the table
 
 ```go
@@ -66,6 +74,7 @@ func main() {
 ```
 
 ### Count
+
 Get the count and calculate the error of your hyper log log
 
 ```go
@@ -92,4 +101,4 @@ Run tests using ```go test```.
 
 Written by Chavez
 
-Released under the MIT License: http://www.opensource.org/licenses/mit-license.php
+Released under the MIT License: <http://www.opensource.org/licenses/mit-license.php>

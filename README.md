@@ -93,6 +93,20 @@ hll := NewWithErr(0.065)
 
 Docs can be generated locally using ```godoc``` or go to [godoc.org](http://godoc.org/github.com/mtchavez/go-hll/hll)
 
+## Benchmarks
+
+```txt
+# Updated: 2022-07-01
+
+goos: darwin
+goarch: arm64
+pkg: github.com/mtchavez/go-hll/hll
+
+BenchmarkHllNew-8         103207             11357 ns/op
+BenchmarkHllAdd-8       15996489             74.95 ns/op
+BenchmarkHllCount-8       156948              7598 ns/op
+```
+
 ## Tests
 
 Run tests using ```go test```.

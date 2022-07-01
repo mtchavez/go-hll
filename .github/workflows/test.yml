@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go }}
+      - run: sudo apt-get install --reinstall wamerican
       - name: Run tests
         run: make ci
       - uses: codecov/codecov-action@v3

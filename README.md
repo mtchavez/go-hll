@@ -1,6 +1,6 @@
 # go-hll
 
-[![Build Status](https://travis-ci.org/mtchavez/go-hll.svg?branch=master)](https://travis-ci.org/mtchavez/go-hll)
+[![Test](https://github.com/mtchavez/go-hll/actions/workflows/test.yml/badge.svg)](https://github.com/mtchavez/go-hll/actions/workflows/test.yml)
 [![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/mtchavez/go-hll)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mtchavez/go-hll)](https://goreportcard.com/report/github.com/mtchavez/go-hll)
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbdf4f5b5cfa83ad2030/maintainability)](https://codeclimate.com/github/mtchavez/go-hll/maintainability)

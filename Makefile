@@ -12,7 +12,7 @@ vet:
 	@echo "[Vet] running go vet"
 	@cd ${ROOT}/hll && go vet
 
-ci: deps vet lint test
+ci: deps vet test
 
 test:
 	@echo "[Test] running tests"

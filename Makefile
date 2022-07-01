@@ -16,6 +16,6 @@ ci: deps vet test
 
 test:
 	@echo "[Test] running tests"
-	@go test -v ./... -cover -coverprofile=c.out
+	@go test -v ./... -cover -coverprofile=c.out -bench=".*"
 
 .PHONY: default deps vet ci test

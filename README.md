@@ -1,5 +1,6 @@
 # go-hll
 
+[![Latest Version](http://img.shields.io/github/release/mtchavez/go-hll.svg?style=flat-square)](https://github.com/mtchavez/go-hll/releases)
 [![Test](https://github.com/mtchavez/go-hll/actions/workflows/test.yml/badge.svg)](https://github.com/mtchavez/go-hll/actions/workflows/test.yml)
 [![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/mtchavez/go-hll)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mtchavez/go-hll)](https://goreportcard.com/report/github.com/mtchavez/go-hll)
